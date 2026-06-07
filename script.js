@@ -61,7 +61,7 @@ if (bgImage) {
 
 
 // Music toggle
-const music = $('#bgMusic');
+/*const music = $('#bgMusic');
 const musicToggle = $('#musicToggle');
 if (music && musicToggle) {
   const setLabel = (enabled) => {
@@ -89,91 +89,54 @@ if (music && musicToggle) {
       setLabel(false);
     }
   });
+}*/
+const musicAuto = document.getElementById('bgMusic');
+
+if (musicAuto) {
+  // Attempt autoplay immediately; if blocked, retry on first user interaction.
+  musicAuto.volume = 0.5;
+  let started = false;
+
+  const tryStart = async () => {
+    if (started) return;
+    started = true;
+    try {
+      await musicAuto.play();
+    } catch (err) {
+      console.log('Autoplay blocked:', err);
+    }
+  };
+
+  // Try right away
+  tryStart();
+
+  // Fallback for browsers that require user interaction
+  window.addEventListener('scroll', tryStart, { passive: true, once: true });
+  window.addEventListener('pointerdown', tryStart, { once: true });
+  window.addEventListener('keydown', tryStart, { once: true });
 }
 
-// RSVP persistence
-const STORAGE_KEY = 'engagement_rsvp_guests_v1';
+// RSVP (simple interaction only)
 const guestNameInput = $('#guestName');
 const rsvpForm = $('#rsvpForm');
 const messageEl = $('#rsvpMessage');
-const guestListEl = $('#guestList');
-const clearGuestsBtn = $('#clearGuests');
-
-const loadGuests = () => {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    const data = raw ? JSON.parse(raw) : [];
-    return Array.isArray(data) ? data : [];
-  } catch {
-    return [];
-  }
-};
-
-const saveGuests = (guests) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(guests));
-};
-
-let guests = loadGuests();
-
-const renderGuests = () => {
-  guestListEl.innerHTML = '';
-  if (guests.length === 0) {
-    const li = document.createElement('li');
-    li.className = 'message';
-    li.textContent = 'No confirmations yet.';
-    guestListEl.appendChild(li);
-    return;
-  }
-
-  guests
-    .slice()
-    .sort((a,b) => b.time - a.time)
-    .forEach((g, idx) => {
-      const li = document.createElement('li');
-      li.className = 'guest-item';
-
-      const name = document.createElement('span');
-      name.textContent = g.name;
-
-      const badge = document.createElement('span');
-      badge.className = 'badge';
-      badge.textContent = `#${idx+1}`;
-
-      li.appendChild(name);
-      li.appendChild(badge);
-      guestListEl.appendChild(li);
-    });
-};
-
-renderGuests();
 
 rsvpForm?.addEventListener('submit', (e) => {
   e.preventDefault();
   const name = (guestNameInput?.value || '').trim();
   if (!name) return;
 
-  // Basic normalization (avoid duplicates by exact name)
-  const exists = guests.some(g => g.name.toLowerCase() === name.toLowerCase());
-  if (exists) {
-    messageEl.textContent = 'You already confirmed with this name.';
-    guestNameInput.value = '';
-    return;
-  }
-
-  guests.push({ name, time: Date.now() });
-  saveGuests(guests);
-  renderGuests();
-
-  messageEl.textContent = 'Thank you for confirming your attendance!';
+  // Do not store or display names.
   guestNameInput.value = '';
+
+  // Smooth confirmation message.
+  messageEl.textContent = 'We are waiting for you 🤍';
+  messageEl.classList.remove('msg-pop');
+  // Force reflow to restart animation reliably
+  void messageEl.offsetWidth;
+  messageEl.classList.add('msg-pop');
 });
 
-clearGuestsBtn?.addEventListener('click', () => {
-  guests = [];
-  saveGuests(guests);
-  renderGuests();
-  messageEl.textContent = '';
-});
 
 // Countdown timer
 const EVENT_DATE = new Date('2026-07-17T20:00:00');

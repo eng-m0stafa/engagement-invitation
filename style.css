@@ -21,7 +21,7 @@ body{
   font-family:"Playfair Display", serif;
   color: var(--soft);
   overflow-x:hidden;
-background: #070504;
+  background: #3b2d13;
 
 }
 
@@ -54,36 +54,33 @@ background: #070504;
 }
 .bg-image{
   position:absolute;
-  inset:-60px;
-  background-image:
-    url('https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?auto=format&fit=crop&w=1200&q=80');
-
-  background-size: cover;
-  background-position: center;
-  filter: blur(14px) saturate(1.08) brightness(0.92);
+  inset:0;
+  background: url("bg.jpg.jpeg") center/cover no-repeat;
+  filter: saturate(1.05) brightness(0.88);
   transform: translate3d(0,0,0);
 }
 
+
 .bg-gradient{
   position:absolute; inset:0;
-  background:
-    radial-gradient(900px 500px at 50% 15%, rgba(212,175,55,0.25) 0%, rgba(0,0,0,0) 60%),
-    linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.72) 60%, rgba(0,0,0,0.62) 100%);
+    background:
+    radial-gradient(900px 500px at 50% 15%, rgba(212,175,55,0.18) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.45) 100%);
 }
+
 
 .bg-veil{
   position:absolute; inset:0;
   background:
     linear-gradient(0deg, rgba(11,8,6,0.75) 0%, rgba(11,8,6,0.35) 45%, rgba(11,8,6,0.72) 100%);
-  opacity: .95;
+  opacity: .45;
 }
 
 .bg-overlay{
   position:absolute; inset:0;
-  background:
-    radial-gradient(700px 380px at 50% 18%, rgba(212,175,55,0.22) 0%, rgba(212,175,55,0) 60%),
-    rgba(0,0,0,0.48);
+  background: rgba(0,0,0,0.55);
 }
+
 
 
 
@@ -124,16 +121,13 @@ background: #070504;
 .decor-lines span:nth-child(2){max-width:50px; flex:0;}
 
 .invite-title{
-  margin:0;
-  text-align:center;
-  font-size: 18px;
-  line-height: 1.75;
-  font-weight:500;
-  letter-spacing: .22px;
+   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .names-wrap{
-  display:block;
+    margin: 20px 0;
 }
 
 
@@ -238,7 +232,19 @@ input{
 }
 input::placeholder{color: rgba(255,255,255,0.65)}
 
-.message{margin: 10px 0 0; text-align:center; color: rgba(255,255,255,0.85); min-height: 1.2em;}
+.message{margin: 14px 0 0; text-align:center; color: rgba(255,255,255,0.92); min-height: 1.2em;}
+
+/* RSVP confirmation animation */
+.msg-pop{
+  animation: msgPop .45s cubic-bezier(.2,.9,.2,1) both;
+}
+
+@keyframes msgPop{
+  0%{opacity:0; transform: translateY(8px) scale(.98);}
+  55%{opacity:1; transform: translateY(0) scale(1.03);}
+  100%{opacity:1; transform: translateY(0) scale(1);}
+}
+
 
 .guestlist-header{display:flex; flex-direction:column; gap:3px; align-items:center; margin-bottom: 10px;}
 .guestlist-title{color: #fff; font-weight:700; letter-spacing:.02em}

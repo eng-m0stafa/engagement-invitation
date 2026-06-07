@@ -12,18 +12,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
-</head>
 <body>
-  <!-- Background music (autoplay muted; user can enable) -->
-  <audio id="bgMusic" loop preload="auto" muted>
+  <!-- Background music (autoplay attempt; may be blocked until user interaction) -->
+  <audio id="bgMusic" loop preload="auto" autoplay>
+
     <!-- Use a small public-domain/placeholder track. Replace with your own file if you want. -->
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8d7bf8d0b5.mp3?filename=romantic-ambient-11208.mp3" type="audio/mpeg">
+    <source src="music.mp3" type="audio/mpeg">
   </audio>
 
-  <button class="music-toggle" id="musicToggle" type="button" aria-label="Toggle background music">
-    <span class="music-icon" aria-hidden="true">♪</span>
-    <span class="music-text">Enable Music</span>
-  </button>
+
 
   <main class="page">
     <!-- HERO / Intro -->
@@ -50,7 +47,10 @@
         <h1 class="invite-title" data-reveal>
           <span class="fade-stagger" data-stagger>Together with their families,</span><br />
           <span class="names-wrap" aria-label="Mostafa and Rahma">
-            <span class="names-glow">Mostafa &amp; Rahma</span>
+            <span class="names-glow">Mostafa</span><br />
+            <span class="amp">&amp;</span><br />
+            <span class="names-glow">Rahma</span>
+            
           </span><br />
           <span class="fade-stagger" data-stagger>joyfully invite you to celebrate their engagement</span>
         </h1>
@@ -136,14 +136,6 @@
           <p id="rsvpMessage" class="message" role="status" aria-live="polite"></p>
         </div>
 
-        <div class="card" data-reveal>
-          <div class="guestlist-header">
-            <div class="guestlist-title">Guest List</div>
-            <div class="guestlist-sub">(saved on this device)</div>
-          </div>
-          <ul id="guestList" class="guest-list" aria-label="Guest list"></ul>
-          <button class="btn ghost" type="button" id="clearGuests">Clear List</button>
-        </div>
 
         <footer class="fineprint" data-reveal>
           <div class="divider"></div>
@@ -155,6 +147,7 @@
   </main>
 
   <script src="script.js"></script>
+  
 </body>
 </html>
 

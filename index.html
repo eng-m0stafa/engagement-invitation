@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#D4AF37" />
+  <title>Mostafa & Rahma — Engagement Invitation</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Background music (autoplay muted; user can enable) -->
+  <audio id="bgMusic" loop preload="auto" muted>
+    <!-- Use a small public-domain/placeholder track. Replace with your own file if you want. -->
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8d7bf8d0b5.mp3?filename=romantic-ambient-11208.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="music-toggle" id="musicToggle" type="button" aria-label="Toggle background music">
+    <span class="music-icon" aria-hidden="true">♪</span>
+    <span class="music-text">Enable Music</span>
+  </button>
+
+  <main class="page">
+    <!-- HERO / Intro -->
+    <section class="section hero scene" id="intro">
+      <div class="bg" aria-hidden="true">
+        <div class="bg-image" role="presentation"></div>
+        <div class="bg-gradient"></div>
+        <div class="bg-overlay"></div>
+        <div class="bg-veil"></div>
+      </div>
+
+
+      <nav class="top-nav" aria-label="Page navigation">
+        <button class="nav-link" type="button" data-scroll="#event">Event</button>
+        <button class="nav-link" type="button" data-scroll="#location">Location</button>
+        <button class="nav-link" type="button" data-scroll="#rsvp">RSVP</button>
+      </nav>
+
+      <div class="content hero-content">
+        <div class="decor-lines" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+
+        <h1 class="invite-title" data-reveal>
+          <span class="fade-stagger" data-stagger>Together with their families,</span><br />
+          <span class="names-wrap" aria-label="Mostafa and Rahma">
+            <span class="names-glow">Mostafa &amp; Rahma</span>
+          </span><br />
+          <span class="fade-stagger" data-stagger>joyfully invite you to celebrate their engagement</span>
+        </h1>
+
+      </div>
+
+      <div class="scroll-hint" aria-hidden="true">Scroll</div>
+    </section>
+
+    <!-- Event details -->
+    <section class="section" id="event">
+      <div class="content event-content">
+        <header class="section-header" data-reveal>
+          <div class="section-kicker" data-stagger>Engagement</div>
+          <h2 class="section-title" data-stagger>Event Details</h2>
+        </header>
+
+
+        <div class="card" data-reveal>
+          <div class="detail-row">
+            <div class="detail-label">Friday</div>
+            <div class="detail-value">17 July 2026</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">At</div>
+            <div class="detail-value">8:00 PM</div>
+          </div>
+        </div>
+
+        <div class="countdown card subtle" data-reveal>
+          <div class="countdown-title">Countdown</div>
+          <div class="countdown-grid" role="group" aria-label="Time until the event">
+            <div class="time-block"><div class="time-num" id="cdDays">--</div><div class="time-label">Days</div></div>
+            <div class="time-block"><div class="time-num" id="cdHours">--</div><div class="time-label">Hours</div></div>
+            <div class="time-block"><div class="time-num" id="cdMins">--</div><div class="time-label">Minutes</div></div>
+            <div class="time-block"><div class="time-num" id="cdSecs">--</div><div class="time-label">Seconds</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location -->
+    <section class="section" id="location">
+      <div class="content location-content">
+        <header class="section-header" data-reveal>
+          <div class="section-kicker" data-stagger>Venue</div>
+          <h2 class="section-title" data-stagger>Location</h2>
+        </header>
+
+
+        <div class="card" data-reveal>
+          <div class="location-name">Al Masa Hall, El Tal El Kebir</div>
+          <div class="location-actions">
+            <a class="btn primary" id="viewLocation" href="https://maps.app.goo.gl/NgdpC7iD8UYKezee7?g_st=ic" target="_blank" rel="noopener">
+              View Location
+            </a>
+          </div>
+
+          <div class="location-note">Tap to open in Google Maps.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section" id="rsvp">
+      <div class="content rsvp-content">
+        <header class="section-header" data-reveal>
+          <div class="section-kicker" data-stagger>Confirmation</div>
+          <h2 class="section-title" data-stagger>RSVP</h2>
+        </header>
+
+
+        <div class="card" data-reveal>
+          <form id="rsvpForm" class="rsvp-form">
+            <label class="field">
+              <span class="field-label">Your name</span>
+              <input id="guestName" name="guestName" type="text" autocomplete="name" placeholder="Enter your name" required />
+            </label>
+
+            <button class="btn gold" type="submit">Confirm Attendance</button>
+          </form>
+
+          <p id="rsvpMessage" class="message" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="card" data-reveal>
+          <div class="guestlist-header">
+            <div class="guestlist-title">Guest List</div>
+            <div class="guestlist-sub">(saved on this device)</div>
+          </div>
+          <ul id="guestList" class="guest-list" aria-label="Guest list"></ul>
+          <button class="btn ghost" type="button" id="clearGuests">Clear List</button>
+        </div>
+
+        <footer class="fineprint" data-reveal>
+          <div class="divider"></div>
+          <div>Mostafa &amp; Rahma · Engagement Invitation</div>
+          <div class="fineprint-copy">Share this page to invite family &amp; friends.</div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

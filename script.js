@@ -135,6 +135,7 @@ rsvpForm?.addEventListener('submit', (e) => {
   // Force reflow to restart animation reliably
   void messageEl.offsetWidth;
   messageEl.classList.add('msg-pop');
+  
 });
 
 

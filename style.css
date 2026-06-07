@@ -33,10 +33,13 @@ body{
 }
 
 .section{
-  min-height:100vh;
-  padding: 22px 18px 34px;
+  min-height: auto;
+  padding: 10px 14px 14px;
   position:relative;
 }
+
+
+
 
 /* Hero background */
 .hero{padding-top: 70px;}
@@ -84,7 +87,8 @@ body{
 
 
 
-.content{display:flex; flex-direction:column; gap:18px;}
+.content{display:flex; flex-direction:column; gap:10px;}
+
 
 .top-nav{
   position:fixed;
